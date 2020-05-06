@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>News Home</h1>
+
+    <p>Welcome to <em>News</em></p>
+
+    <h2>Dynamic content</h2>
+    <ul>
+        {% for post in posts %}
+            <h3>{{ post.news_topic }}</h3>
+            <h4>{{ post }}</h4>
+            <h6>{{ post.author }}</h6>
+            <a href="{% url 'comment' post.id %}">add comment</a>
+            {% for comment in post.comments.all %}
+                <h5>{{ comment.text }}</h5>
+                <h5>{{ comment.author }}</h5>
+            {% endfor %}
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
